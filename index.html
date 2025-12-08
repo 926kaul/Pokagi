@@ -38,6 +38,18 @@
                 margin: 0px;
                 padding: 0px;
                 border: 0px;
+
+                /* 95% 크기 강제 적용 */
+                width: 95vw !important; /* 브라우저 뷰포트 너비의 95% */
+                height: 95vh !important; /* 브라우저 뷰포트 높이의 95% */
+                
+                /* 캔버스 중앙 정렬 (선택 사항) */
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                
+                /* 다른 기존 스타일은 유지 */
             }
             :-webkit-full-screen #canvas {
                 width: 100%;
@@ -112,7 +124,7 @@
         </div>
 
         <!-- Run the game code -->
-        <script type="text/javascript" src="html5game/Pokagi.js?cachebust=168502618"></script>
+        <script type="text/javascript" src="html5game/Pokagi.js?cachebust=736312538"></script>
 
         <!-- Builtin injector for injecting runner path -->
         
