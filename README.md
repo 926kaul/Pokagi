@@ -1,5 +1,7 @@
 ## 🥚 포카기: 포켓몬 타입 상성 기반 알까기 게임
 
+https://926kaul.github.io/Pokagi/
+
 포카기(Pokagi)는 포켓몬스터 1세대(151종)와 독특한 **물리 엔진 및 타입 상성 시스템**을 결합한 특별한 알까기(물리 충돌) 게임입니다. 포켓몬의 스탯이 충돌 물리량에 직접 영향을 미치며, 전략적인 배치와 타입 상성 계산이 승리의 열쇠입니다.
 
 ---
@@ -18,12 +20,12 @@
 
 각 포켓몬의 물리적 특성(크기, 질량, 속도)은 **종족값**을 기준으로 50, 70, 100, 120을 경계로 **1~5등급**으로 분류되어 결정됩니다.
 
-| 물리 속성 | 결정 기준 | 등급 분류 기준 |
-| :---: | :---: | :---: |
-| **크기 (Size)** | HP 등급 | |
-| **운동 질량 (Moving Mass)** | $\text{max}(\text{공격}, \text{특수})$ 등급 | |
-| **정지 질량 (Static Mass)** | $\text{max}(\text{방어}, \text{특수})$ 등급 | |
-| **최대 속도 (Max Speed)** | 스피드 등급 | |
+| 물리 속성 | 결정 기준 |
+| :---: | :---: |
+| **크기 (Size)** | HP 등급 |
+| **운동 질량 (Moving Mass)** | $\text{max}(\text{공격}, \text{특수})$ 등급 |
+| **정지 질량 (Static Mass)** | $\text{max}(\text{방어}, \text{특수})$ 등급 |
+| **최대 속도 (Max Speed)** | 스피드 등급 |
 
 #### 3. 성장 및 도감 수집
 
@@ -36,16 +38,16 @@
 
 * **히든 스테이지 위치:** 5-2, 8-2, 9-2, 그리고 Real-Final 스테이지가 존재합니다.
 
-#### 5. 게임 속도 조정
+#### 5. 턴 순서 개념 및 게임 속도 조정
 
-보다 빠른 게임 진행을 위해 마찰력이 감소되었습니다.
-
-* **마찰 계수:** 0.95 $\to$ **0.98** (6세대 이후의 빠른 게임 흐름 반영)
+* **턴 순서:** 각 **세대**에 모든 포켓몬은 한 번씩 움직일 기회인 "턴"을 갖게 됩니다. 한 세대에서 **턴 순서는 스피드와 무관**하며, 세대가 시작할 때 **중심에서 먼 포켓몬**부터 턴을 부여받게 됩니다.
+* **게임 속도 조정:** Gen 6 이후부터의 빠른 게임 진행을 위해 마찰력이 감소됩니다. 마찰 계수가 0.95 $\to$ **0.98**가 됩니다.
 
 #### 6. 스테이지 유형
 
-* **정규 스테이지:** 체육관 관장으로, 포켓몬 배치와 구성이 **고정**되어 있습니다.
-* **랜덤 스테이지 (-1, -2):** 야생 포켓몬이 **일정 범위 내에서 랜덤하게** 출현하며, 중복 방지 보정이 적용되어 다회차 플레이를 돕습니다.
+* **정규 스테이지 (Stage X):** 체육관 관장으로, 포켓몬 배치와 구성이 **고정**되어 있습니다.
+* **랜덤 스테이지 (Stage X-1):** 야생 포켓몬이 **일정 범위 내에서 랜덤하게** 출현하며, 중복 방지 보정이 적용되어 다회차 플레이를 돕습니다.
+* **히든 스테이지 (Stage X-2):** 이전 정규 스테이지에서 아군 포켓몬 3마리가 모두 생존하면, 특별한 포켓몬을 잡을 수 있는 히든 스테이지로 진입할 수도 있습니다.
 
 #### 7. 151종 수집
 
@@ -84,12 +86,12 @@ The **Velocity** of Pokémon after a collision is determined by **Type Effective
 
 A Pokémon's physical attributes (Size, Mass, Speed) are classified into **1 to 5 tiers** based on their **Base Stats**, cut off at values of 50, 70, 100, and 120.
 
-| Physical Attribute | Determination Base | Tier Classification Base Stat |
-| :---: | :---: | :---: |
-| **Size** | HP Tier | |
-| **Moving Mass** | $\text{max}(\text{Attack}, \text{Special})$ Tier | |
-| **Static Mass** | $\text{max}(\text{Defense}, \text{Special})$ Tier | |
-| **Max Speed** | Speed Tier | |
+| Physical Attribute | Determination Base |
+| :---: | :---: |
+| **Size** | HP Tier |
+| **Moving Mass** | $\text{max}(\text{Attack}, \text{Special})$ Tier |
+| **Static Mass** | $\text{max}(\text{Defense}, \text{Special})$ Tier |
+| **Max Speed** | Speed Tier |
 
 #### 3. Growth and Pokedex Collection
 
@@ -102,11 +104,10 @@ A **Hidden Stage** may be unlocked if you win a regular stage with **all three a
 
 * **Hidden Stage Locations:** Hidden stages 5-2, 8-2, 9-2, and the Real-Final stage exist.
 
-#### 5. Speed Adjustment
+#### 5. Turn Order Concept and Game Speed Adjustment
 
-To ensure a speedy gameplay experience, friction has been reduced (similar to Gen 6 onwards).
-
-* **Friction Coefficient:** Reduced from 0.95 $\to$ **0.98**.
+* **Turn Order:** In each **Generation**, every Pokémon gets one turn to move. The **turn order is independent of the Speed stat** and is assigned at the start of a Generation, prioritizing the Pokémon **farthest from the center**.
+* **Game Speed Adjustment:** For faster gameplay (similar to Gen 6 onwards), friction has been reduced. The friction coefficient has changed from 0.95 $\to$ **0.98**.
 
 #### 6. Stage Types
 
