@@ -61,6 +61,7 @@ https://926kaul.github.io/Pokagi/
 
 * GitHub Issue
 * 이메일: 926kaul@gmail.com
+* 소스코드: https://github.com/926kaul/Pokagi_Gamemaker
 
 ***
 
@@ -126,3 +127,4 @@ Please report any bugs or issues via the channels below:
 
 * GitHub Issue
 * Email: 926kaul@gmail.com
+* Source Code: https://github.com/926kaul/Pokagi_Gamemaker
