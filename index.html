@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
-    <!-- Custom PreHead code is injected here -->
+<html lang="ko">
     
 
     <head>
@@ -14,87 +12,79 @@
         <!-- End Google Tag Manager -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta charset="utf-8"/>
-        <meta name="google-site-verification" content="NrQoTBET1GjG0waqrr2s_ZpJNXDdgNPVaSZ3YKSdoJs" />
-
-        <!-- Builtin injector for disabling cache -->
+        <meta charset="utf-8" />
         <meta http-equiv="pragma" content="no-cache"/>
-
-        <!-- Set the title bar of the page -->
         <title>Pokagi</title>
-
-        <!-- Custom PreStyle code is injected here -->
         
 
-        <!-- Set the background colour of the document -->
         <style>
-            body {
-                background: #0;
-                color: #cccccc;
-                margin: 0px;
-                padding: 0px;
-                border: 0px;
-            }
-
-            canvas {
-                image-rendering: optimizeSpeed;
-                -webkit-interpolation-mode: nearest-neighbor;
-                -ms-touch-action: none;
-                touch-action: none;
-                margin: 0px;
-                padding: 0px;
-                border: 0px;
-            }
-            :-webkit-full-screen #canvas {
+            html,
+            body,
+            #gm4html5_div_id {
                 width: 100%;
                 height: 100%;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                overflow: hidden;
+                background: #0;
+                color: #cccccc;
             }
+
+            /*
+             * CSS pixels define layout only. GML sets the canvas width/height
+             * attributes to this 5:3 box multiplied by devicePixelRatio, so
+             * one backing pixel maps to one physical display pixel.
+             */
+            #canvas {
+                width: min(100vw, calc(100vh * 5 / 3));
+                height: min(100vh, calc(100vw * 3 / 5));
+                image-rendering: auto;
+                -ms-touch-action: none;
+                touch-action: none;
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+
+            :-webkit-full-screen #canvas {
+                width: min(100vw, calc(100vh * 5 / 3));
+                height: min(100vh, calc(100vw * 3 / 5));
+            }
+
             :-webkit-full-screen {
                 width: 100%;
                 height: 100%;
             }
-            
-            /* Custom Runner Styles */
+
             div.gm4html5_div_class {
-                margin: 0px;
-                padding: 0px;
-                border: 0px;
+                margin: 0;
+                padding: 0;
+                border: 0;
             }
+
             div.gm4html5_login {
                 padding: 20px;
                 position: absolute;
                 border: solid 2px #000000;
                 background-color: #404040;
-                color:#00ff00;
+                color: #00ff00;
                 border-radius: 15px;
                 box-shadow: #101010 20px 20px 40px;
             }
-            div.gm4html5_cancel_button {
-                float: right;
-            }
-            div.gm4html5_login_button {
-                float: left;
-            }
-            div.gm4html5_login_header {
-                text-align: center;
-            }
-            /* END - Custom Runner Styles */
-            
+
+            div.gm4html5_cancel_button { float: right; }
+            div.gm4html5_login_button { float: left; }
+            div.gm4html5_login_header { text-align: center; }
         </style>
 
-        <!-- Custom PostStyle code is injected here -->
         
-
-        <!-- Builtin injector for injecting flurry analytics code -->
         
     </head>
 
-    <!-- Custom PostHead code is injected here -->
     
-
-    <!-- Custom PreBody code is injected here -->
     
 
     <body>
@@ -102,43 +92,48 @@
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQP85VPL"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
-
-        <!-- Custom BodyStart code is injected here -->
         
 
         <div class="gm4html5_div_class" id="gm4html5_div_id">
             
-            <!-- Builtin injector for splash screen -->
             
-
-            <!-- Custom PreCanvas code is injected here -->
-            
-
-            <!-- Create the canvas element the game draws to -->
-            <canvas id="canvas" width="960" height="960" style="position: absolute; top: 50%; left: 50%; bottom: -50%; right: -50%; transform: translate(-50%, -50%);">
+            <canvas id="canvas" width="1600" height="960" style="position: absolute; top: 50%; left: 50%; bottom: -50%; right: -50%; transform: translate(-50%, -50%);">
                 
                 <p>Your browser doesn't support HTML5 canvas.</p>
             </canvas>
             
-            <!-- Custom PostCanvas code is injected here -->
-            
         </div>
 
-        <!-- Run the game code -->
-        <script type="text/javascript" src="html5game/Pokagi.js?cachebust=2013562064"></script>
-
-        <!-- Builtin injector for injecting runner path -->
+        <script type="text/javascript" src="html5game/Pokagi.js?cachebust=1774387557"></script>
         
+        <script>
+            function pokagiFitCanvasCss() {
+                const canvas = document.getElementById("canvas");
+                if (!canvas) return;
 
-        <script>window.onload = GameMaker_Init;</script>
+                const viewportWidth = Math.floor(window.innerWidth);
+                const viewportHeight = Math.floor(window.innerHeight);
+                let cssWidth = viewportWidth;
+                let cssHeight = Math.floor(cssWidth * 3 / 5);
 
-        <!-- Builtin injector for injecting google analytics code -->
+                if (cssHeight > viewportHeight) {
+                    cssHeight = viewportHeight;
+                    cssWidth = Math.floor(cssHeight * 5 / 3);
+                }
+
+                canvas.style.width = `${Math.max(1, cssWidth)}px`;
+                canvas.style.height = `${Math.max(1, cssHeight)}px`;
+            }
+
+            window.addEventListener("resize", pokagiFitCanvasCss, { passive: true });
+            window.onload = function () {
+                pokagiFitCanvasCss();
+                GameMaker_Init();
+            };
+        </script>
         
-
-        <!-- Custom BodyEnd code is injected here -->
         
     </body>
 
-    <!-- Custom PostBody code is injected here -->
     
 </html>
